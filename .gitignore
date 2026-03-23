@@ -4,3 +4,4 @@ puml.py
 requirements.txt
 diagram.png
 .vscode
+__pycache__
