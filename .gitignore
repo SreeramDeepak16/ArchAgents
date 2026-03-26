@@ -6,3 +6,4 @@ diagram.png
 .vscode
 *.py[co]
 puml2.py
+**/faiss_index/
