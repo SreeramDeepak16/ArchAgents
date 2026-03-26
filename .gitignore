@@ -1,7 +1,6 @@
 .env
 venv
 puml.py
-requirements.txt
 diagram.png
 .vscode
 *.py[co]
