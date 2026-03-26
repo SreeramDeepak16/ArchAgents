@@ -24,6 +24,8 @@ def get_req(state: AnalystState) -> AnalystState:
     except Exception as e:
         print(f"An error occurred: {e}")
 
+    print("Extracting requirements...")
+
     prompt = PromptTemplate(
         template=ANALYST_AGENT_PROMPT,
         input_variables=['srs']

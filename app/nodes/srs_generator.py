@@ -19,6 +19,8 @@ def generate_srs(state: ArchState) -> ArchState:
     except Exception as e:
         print(f"An error occurred: {e}")
 
+    print("Generating SRS...")
+
     prompt = PromptTemplate(
         template=SRS_GENERATOR_PROMPT,
         input_variables=['description']

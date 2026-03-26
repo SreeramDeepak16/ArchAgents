@@ -5,3 +5,4 @@ requirements.txt
 diagram.png
 .vscode
 *.py[co]
+puml2.py
