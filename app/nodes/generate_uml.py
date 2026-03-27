@@ -39,11 +39,11 @@ def generate_uml(state: ModelerState) -> ModelerState:
     nfr = analyst_state.nfr
     asr = analyst_state.asr
     dc = analyst_state.dc
-    #documents = state.documents
+    documents = state.documents
 
     prompt = PromptTemplate(
         template=UML_GENERATOR_PROMPT,
-        input_variables=['UML_TYPES', 'fr', 'nfr', 'asr', 'dc']
+        input_variables=['UML_TYPES', 'fr', 'nfr', 'asr', 'dc', 'documents']
     )
     structured_llm = llm.with_structured_output(UML)
     chain = prompt | structured_llm
@@ -52,7 +52,8 @@ def generate_uml(state: ModelerState) -> ModelerState:
         'fr': fr,
         'nfr': nfr,
         'asr': asr,
-        'dc': dc
+        'dc': dc,
+        'documents': documents
     })
     results = [
         result.use_case_code,

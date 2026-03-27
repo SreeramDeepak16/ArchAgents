@@ -12,6 +12,7 @@ class AnalystState(BaseModel):
 
 class ModelerState(BaseModel):
     analyst_state: Optional[AnalystState] = None
+    rag_query: Optional[str] = None
     diagram_codes: List[str] = Field(default_factory=list)
     diagram_types: List[str] = Field(default_factory=list)
     documents: List[str] = Field(default_factory=list)

@@ -1,0 +1,18 @@
+You are RAG agent.
+Your job is to generate a query to perform RAG over a knowledge base
+consisting of design practices and decisions to build software applications.
+The requirements and constraints of the system to be built is given below.
+
+Funtional requirements - 
+{fr}
+
+Non-functional requirements - 
+{nfr}
+
+Architecturally significant requirements - 
+{asr}
+
+Design constraints - 
+{dc}
+
+Generate ONLY a single string consisting of the query and nothing else.

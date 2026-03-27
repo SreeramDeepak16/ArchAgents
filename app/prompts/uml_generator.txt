@@ -18,6 +18,9 @@ Architecturally significant requirements -
 Design constraints - 
 {dc}
 
+You can use the below data for design patterns and decisions to build the system.
+{documents}
+
 Generate ONLY PlantUML code AND NOTHING ELSE.
 Return ONLY valid JSON.
 

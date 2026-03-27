@@ -6,8 +6,8 @@ from app.services.vectorstore import save_vectorstore
 
 def ingest():
 
-    loader1 = PyPDFLoader("data/Designing Data Intensive Applications by Martin Kleppmann.pdf")
-    loader2 = PyPDFLoader("data/System Design Interview by Alex Xu.pdf")
+    loader1 = PyPDFLoader("data\[O`Reilly. Head First] - Head First Design Patterns - [Freeman].pdf")
+    loader2 = PyPDFLoader("data\swe_at_google.2.pdf")
 
     docs1 = loader1.load()
     docs2 = loader2.load()
