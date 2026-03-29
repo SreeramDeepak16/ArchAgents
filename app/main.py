@@ -1,9 +1,10 @@
 from app.graph.builder import build_graph
+import asyncio
 
-def get_arch(description: str):
+async def get_arch(description: str):
 
     graph = build_graph()
-    result = graph.invoke({'description': description})
+    result = await graph.ainvoke({'description': description})
     modeler_state = result['modeler_state']
     for (t,c) in zip(modeler_state['diagram_types'], modeler_state['diagram_codes']):
         print(t)
@@ -12,4 +13,5 @@ def get_arch(description: str):
 
 description = '''Social media platform focused on sharing visual content such as photos and videos.'''
 
-get_arch(description)
+if __name__ == "__main__":
+    asyncio.run(get_arch(description))

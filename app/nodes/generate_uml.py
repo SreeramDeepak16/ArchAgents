@@ -2,27 +2,28 @@ from app.graph.state import ModelerState
 from app.services.llm import get_llm
 from langchain_core.prompts import PromptTemplate
 from pydantic import BaseModel, Field
+from langchain_core.output_parsers import StrOutputParser
+import asyncio
 
 llm = get_llm()
 
 prompt_file_path = "app/prompts/uml_generator.txt"
 
 UML_TYPES = [
-    "Use case diagram",
-    "Activity diagram",
-    "Sequence diagram",
+    "Component diagram",
+    "Package diagram",
     "Class diagram",
-    "State diagram"
+    "Object diagram",
+    "State diagram",
+    "Container diagram",
+    "Deployment diagram",
+    "Activity diagram",
+    "Collaboration diagram",
+    "Sequence diagram",
+    "Use case diagram"
 ]
 
-class UML(BaseModel):
-    use_case_code: str = Field(description="Use case diagram code")
-    activity_code: str = Field(description="Activity diagram code")
-    sequence_code: str = Field(description="Sequence diagram code")
-    class_code: str = Field(description="Class diagram code")
-    state_code: str = Field(description="State diagram code")
-
-def generate_uml(state: ModelerState) -> ModelerState:
+async def generate_uml(state: ModelerState) -> ModelerState:
 
     try:
         with open(prompt_file_path, 'r', encoding='utf8') as file:
@@ -43,29 +44,26 @@ def generate_uml(state: ModelerState) -> ModelerState:
 
     prompt = PromptTemplate(
         template=UML_GENERATOR_PROMPT,
-        input_variables=['UML_TYPES', 'fr', 'nfr', 'asr', 'dc', 'documents']
+        input_variables=['diagram', 'fr', 'nfr', 'asr', 'dc', 'documents']
     )
-    structured_llm = llm.with_structured_output(UML)
-    chain = prompt | structured_llm
-    result = chain.invoke({
-        'UML_TYPES': UML_TYPES,
-        'fr': fr,
-        'nfr': nfr,
-        'asr': asr,
-        'dc': dc,
-        'documents': documents
-    })
-    results = [
-        result.use_case_code,
-        result.activity_code,
-        result.sequence_code,
-        result.class_code,
-        result.state_code
+    parser = StrOutputParser()
+    chain = prompt | llm | parser
+    tasks = [
+        chain.ainvoke({
+            'diagram': uml,
+            'fr': fr,
+            'nfr': nfr,
+            'asr': asr,
+            'dc': dc,
+            'documents': documents
+        })
+        for uml in UML_TYPES
     ]
+    results = await asyncio.gather(*tasks)
     
     return {
         "diagram_types": UML_TYPES,
-        "diagram_codes": results
+        "diagram_codes": [r.replace("\n"," ") for r in results]
     }
 
 

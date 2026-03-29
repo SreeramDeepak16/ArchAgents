@@ -6,3 +6,4 @@ diagram.png
 *.py[co]
 puml2.py
 **/faiss_index/
+temp.py

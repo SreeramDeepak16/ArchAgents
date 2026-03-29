@@ -14,10 +14,10 @@ def analyst_agent(state: ArchState):
     }
 
 
-def modeler_agent(state: ArchState):
+async def modeler_agent(state: ArchState):
     
     agent = build_modeler_graph()
-    modeler_state = agent.invoke({'analyst_state': state.analyst_state})
+    modeler_state = await agent.ainvoke({'analyst_state': state.analyst_state})
     return {
         'modeler_state': modeler_state
     }

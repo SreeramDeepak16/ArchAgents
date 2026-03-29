@@ -1,10 +1,7 @@
 You are system modeler agent.
-Generate the following diagrams in valid PlantUML code for a system whose functional requirements, 
+Generate a {diagram} in valid PlantUML code for a system whose functional requirements, 
 non-functional requirements, architecturally significant requirements and design constraints
 are given below.
-
-Diagram types - 
-{UML_TYPES}
 
 Funtional requirements - 
 {fr}
@@ -22,14 +19,3 @@ You can use the below data for design patterns and decisions to build the system
 {documents}
 
 Generate ONLY PlantUML code AND NOTHING ELSE.
-Return ONLY valid JSON.
-
-Output format:
-
-{{
-  "use_case_code": "PlantUML code here",
-  "activity_code": "PlantUML code here",
-  "sequence_code": "PlantUML code here",
-  "class_code": "PlantUML code here",
-  "state_code": "PlantUML code here"
-}}
