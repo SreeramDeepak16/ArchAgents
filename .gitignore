@@ -1,8 +1,13 @@
 .env
-venv
+venv/
+myenv/
+.venv/
+
 puml.py
-diagram.png
-.vscode
-*.py[co]
 puml2.py
+diagram.png
+.vscode/
+
+*.py[co]
+
 **/faiss_index/

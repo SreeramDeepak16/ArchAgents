@@ -16,11 +16,22 @@ class ModelerState(BaseModel):
     diagram_types: List[str] = Field(default_factory=list)
     documents: List[str] = Field(default_factory=list)
     
+class DesignerState(BaseModel):
+    analyst_state: Optional[AnalystState] = None
+    modeler_state: Optional[ModelerState] = None
+    goals: Optional[str] = None
+    architecture_design: Optional[str] = None
+    component_specs: Optional[str] = None
+    key_technologies: Optional[str] = None
+    design_decisions: Optional[str] = None
+    design_rationale: Optional[str] = None
+    code_skeleton: Optional[str] = None
 
 class ArchState(BaseModel):
     description: str
     srs: Optional[str] = None
     analyst_state: Optional[AnalystState] = None
     modeler_state: Optional[ModelerState] = None
+    designer_state: Optional[DesignerState]=None
 
 
