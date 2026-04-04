@@ -7,7 +7,7 @@ from app.graph.state import DesignerState
 
 llm = get_llm()
 
-# Designer output model
+
 class DesignerOutput(BaseModel):
     goals: Optional[str] = Field(description="What the system can achieve")
     architecture_design: Optional[str] = Field(description="Detailed architecture design")
@@ -53,13 +53,13 @@ def getLowLevelDesign(state: DesignerState):
         ]
     )
 
-    # Set up structured output parsing
+    
     structured_llm = llm.with_structured_output(DesignerOutput)
 
-    # Combine prompt + LLM
+   
     chain = prompt | structured_llm
 
-    # Invoke the chain with analyst + modeler outputs
+   
     result = chain.invoke({
         'functionalrequirements': functionalrequirements,
         'non_functionalrequirements': non_functionalrequirements,
