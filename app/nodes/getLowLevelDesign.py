@@ -1,4 +1,5 @@
 from app.services.llm import get_llm
+from app.graph.state import ArchState
 from langchain_core.prompts import PromptTemplate
 from pydantic import BaseModel, Field
 from typing import Optional
@@ -31,10 +32,10 @@ def getLowLevelDesign(state: DesignerState):
         return DesignerOutput()
 
     analyst_state = state.analyst_state
-    functional_requirements = analyst_state.fr
-    non_functional_requirements = analyst_state.nfr
-    architecturally_significant_requirements = analyst_state.asr
-    design_constraints = analyst_state.dc
+    functionalrequirements = analyst_state.fr
+    non_functionalrequirements = analyst_state.nfr
+    Architecturally_significant_requirements = analyst_state.asr
+    DesignConstraints = analyst_state.dc
 
     modeler_state = state.modeler_state
     diagram_codes = modeler_state.diagram_codes
@@ -60,10 +61,10 @@ def getLowLevelDesign(state: DesignerState):
 
    
     result = chain.invoke({
-        'functional_requirements': functional_requirements,
-        'non_functional_requirements': non_functional_requirements,
-        'architecturally_significant_requirements': architecturally_significant_requirements,
-        'design_constraints': design_constraints,
+        'functionalrequirements': functionalrequirements,
+        'non_functionalrequirements': non_functionalrequirements,
+        'architecturally_significant_requirements': Architecturally_significant_requirements,
+        'design_constraints': DesignConstraints,
         'diagram_codes': diagram_codes,
         'documents': documents
     })

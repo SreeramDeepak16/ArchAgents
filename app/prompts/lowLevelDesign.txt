@@ -4,10 +4,10 @@ Your task is to generate detailed architecture documentation using:
 
 ANALYST INPUTS
 Functional Requirements:
-{functional_requirements}
+{functionalrequirements}
 
 Non Functional Requirements:
-{non_functional_requirements}
+{non_functionalrequirements}
 
 Architecturally Significant Requirements:
 {architecturally_significant_requirements}
